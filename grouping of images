@@ -1,0 +1,39 @@
+import os
+import glob
+import shutil
+os.chdir("C:/Users/Dell/Desktop/n")   #the images are stored in desktop
+
+c=[]
+for file in glob.glob("*.jpeg"): #starts looking for jpeg format
+
+      a=file.split("-")
+      b=a[0:( (len(a))-1)]
+      c.append(b)     #converts to list
+d=[]
+for i in c:
+    k=''
+    for j in i:
+        k=k+j+'-'
+    d.append(k)
+#print(d)
+num_set=set()
+for i in d:
+    num_set.add(i)
+#print(num_set)
+for i in num_set:
+
+
+     if not os.path.exists(i): #checks for the path if not it will create a new one
+          os.makedirs(i)
+          print(os.path.abspath(i))
+          for file in glob.glob("*.jpeg"):
+              a = file.split("-")
+              b = a[0:((len(a)) - 1)]
+              print(b)
+              g = i.split("-")
+
+              g = g[0:((len(g)) - 1)]
+              if g==b:
+                  shutil.move(file,os.path.abspath(i) )
+
+
