@@ -1,0 +1,30 @@
+import os
+import glob
+import shutil
+os.chdir("C:/Users/Dell/Desktop/pr") #the images are in the folder in desktop
+c = set()  #by using set the images are not repeated
+
+
+for file in glob.glob("*.jpeg"):
+     a=file.split("-")  #the file is split to remove -
+     b=a[1:(len(a)-1)] #the first and last is removed
+
+     d="".join(b) 
+
+     c.add(d) #all the images are not repeated and added to c
+     
+
+for i in c:
+    if not os.path.exists(i): #if the path doesnt exist
+        os.makedirs(i)  #folder is created of single image
+        #in order to move from file get the for loop
+    for file in glob.glob("*.jpeg"):
+        a = file.split("-")
+        b = a[1:(len(a) - 1)]
+
+        d = "".join(b)
+
+        if i==d: 
+            shutil.move(file,os.path.abspath(i)) #using move , copy the file to destination
+
+
